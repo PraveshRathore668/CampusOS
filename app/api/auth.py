@@ -28,3 +28,25 @@ def register(user_in: UserCreate, db: Session = Depends(get_db)):
     db.refresh(new_user)
 
     return new_user
+
+
+from app.schemas.user import LoginRequest, TokenResponse
+from app.core.security import verify_password, create_access_token, create_refresh_token
+
+
+@router.post("/login", response_model=TokenResponse)
+def login(credentials: LoginRequest, db: Session = Depends(get_db)):
+    user = db.query(User).filter(User.email == credentials.email).first()
+
+    if not user or not verify_password(credentials.password, user.hashed_password):
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Incorrect email or password",
+        )
+
+    token_data = {"sub": str(user.id), "role": user.role.value}
+
+    access_token = create_access_token(token_data)
+    refresh_token = create_refresh_token(token_data)
+
+    return TokenResponse(access_token=access_token, refresh_token=refresh_token)
