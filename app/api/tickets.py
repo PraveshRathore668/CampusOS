@@ -1,10 +1,12 @@
-from fastapi import APIRouter, Depends, status
+from fastapi import APIRouter, Depends, status, HTTPException
 from sqlalchemy.orm import Session
+from typing import List
 from database import get_db
 from app.models.ticket import Ticket
-from app.models.user import User
-from app.schemas.ticket import TicketCreate, TicketOut
-from app.api.deps import get_current_user
+from app.models.user import User, RoleEnum
+from app.schemas.ticket import TicketCreate, TicketUpdate, TicketOut
+from app.api.deps import get_current_user, require_role
+from app.ml.predict import predict_ticket_labels
 
 router = APIRouter(prefix="/api/v1/tickets", tags=["tickets"])
 
@@ -15,12 +17,24 @@ def create_ticket(
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user),
 ):
+    category = ticket_in.category
+    priority = ticket_in.priority
+
+    if category is None or priority is None:
+        combined_text = f"{ticket_in.title}. {ticket_in.description}"
+        prediction = predict_ticket_labels(combined_text)
+
+        if category is None:
+            category = prediction["category"]
+        if priority is None:
+            priority = prediction["priority"]
+
     new_ticket = Ticket(
         title=ticket_in.title,
         description=ticket_in.description,
         location=ticket_in.location,
-        category=ticket_in.category,
-        priority=ticket_in.priority,
+        category=category,
+        priority=priority,
         created_by=current_user.id,
     )
     db.add(new_ticket)
@@ -28,11 +42,6 @@ def create_ticket(
     db.refresh(new_ticket)
 
     return new_ticket
-
-
-from typing import List
-from fastapi import HTTPException
-from app.models.user import RoleEnum
 
 
 @router.get("", response_model=List[TicketOut])
@@ -66,11 +75,6 @@ def get_ticket(
         )
 
     return ticket
-
-
-from app.schemas.ticket import TicketUpdate
-from app.api.deps import require_role
-from app.models.user import RoleEnum
 
 
 @router.patch("/{ticket_id}", response_model=TicketOut)

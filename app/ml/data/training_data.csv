@@ -1,0 +1,91 @@
+text,category,priority
+"The projector in room 301 isn't working and won't turn on",IT_EQUIPMENT,MEDIUM
+"WiFi is completely down in the entire library building",IT_EQUIPMENT,HIGH
+"My laptop charger port in the computer lab is broken",IT_EQUIPMENT,LOW
+"The classroom computer keeps crashing every few minutes",IT_EQUIPMENT,MEDIUM
+"Printer in the admin office is out of toner and jammed",IT_EQUIPMENT,LOW
+"None of the monitors in the CS lab are turning on",IT_EQUIPMENT,HIGH
+"Power outlet in lecture hall B is sparking when plugged in",ELECTRICAL,HIGH
+"Lights in the hallway near the library keep flickering",ELECTRICAL,MEDIUM
+"There is no electricity in the entire east wing dormitory",ELECTRICAL,HIGH
+"Ceiling fan in room 105 is making a loud grinding noise",ELECTRICAL,LOW
+"Emergency exit light above door is completely dead",ELECTRICAL,HIGH
+"Switchboard in the seminar hall is not working at all",ELECTRICAL,MEDIUM
+"Water is leaking from the ceiling in the second floor restroom",PLUMBING,HIGH
+"The sink faucet in the chemistry lab won't stop dripping",PLUMBING,LOW
+"Toilet in the boys hostel washroom is completely clogged",PLUMBING,HIGH
+"No hot water in the hostel showers since this morning",PLUMBING,MEDIUM
+"Drainage pipe under the cafeteria sink is leaking badly",PLUMBING,HIGH
+"Water pressure in the gym showers is extremely low",PLUMBING,LOW
+"Chair in lecture hall A has a broken leg and is unsafe",FURNITURE,MEDIUM
+"Several desks in room 210 are wobbly and unstable",FURNITURE,LOW
+"The whiteboard in seminar room 3 has fallen off the wall",FURNITURE,MEDIUM
+"Library study table has a sharp broken edge that could cut someone",FURNITURE,HIGH
+"Bookshelf in the reading room is tilting and about to fall",FURNITURE,HIGH
+"Office chair armrest is broken and wobbling",FURNITURE,LOW
+"Classroom floor was not swept and has trash everywhere",CLEANING,LOW
+"Restroom on the third floor has not been cleaned in days and smells bad",CLEANING,HIGH
+"Spilled coffee in the hallway needs to be mopped up immediately",CLEANING,MEDIUM
+"Trash cans in the cafeteria are overflowing and attracting insects",CLEANING,HIGH
+"Windows in the library are extremely dusty and need cleaning",CLEANING,LOW
+"Dead insects and cobwebs all over the storage room ceiling",CLEANING,MEDIUM
+"Need help understanding how to submit the hostel leave application",OTHER,LOW
+"Requesting information about the library book renewal process",OTHER,LOW
+"Asking about the procedure to apply for a parking permit",OTHER,LOW
+"General inquiry about upcoming campus event schedules",OTHER,LOW
+"Question about how to reset my student portal password",OTHER,MEDIUM
+"Requesting a duplicate copy of my semester fee receipt",OTHER,LOW
+"The lab computer screen is flickering constantly and hurting my eyes",IT_EQUIPMENT,MEDIUM
+"Internet connection keeps dropping every ten minutes in the hostel",IT_EQUIPMENT,HIGH
+"Keyboard in the library computer station is missing several keys",IT_EQUIPMENT,LOW
+"Scanner in the admin office is not detecting any documents",IT_EQUIPMENT,LOW
+"Projector bulb has burnt out in the main auditorium",IT_EQUIPMENT,MEDIUM
+"Circuit breaker keeps tripping in the physics lab",ELECTRICAL,HIGH
+"One of the classroom lights has been out for a week",ELECTRICAL,LOW
+"Extension cord near the reception desk is exposed and unsafe",ELECTRICAL,HIGH
+"AC unit in the seminar hall is not turning on at all",ELECTRICAL,MEDIUM
+"Wall socket in the staff room stopped working suddenly",ELECTRICAL,LOW
+"Bathroom sink in the girls hostel is completely blocked",PLUMBING,HIGH
+"Water fountain near the gym has stopped working",PLUMBING,LOW
+"Pipe burst in the basement and water is flooding the corridor",PLUMBING,HIGH
+"Shower head in room 12 hostel bathroom is broken off",PLUMBING,MEDIUM
+"Slow draining sink in the staff washroom",PLUMBING,LOW
+"Broken window latch in room 220 won't lock properly",FURNITURE,MEDIUM
+"Auditorium seat is broken and folding down on its own",FURNITURE,LOW
+"Podium in the seminar hall has a cracked stand",FURNITURE,LOW
+"Study cubicle divider panel has fallen off in the library",FURNITURE,MEDIUM
+"Reception desk chair wheel is broken and won't roll",FURNITURE,LOW
+"Cafeteria tables are sticky and haven't been wiped down",CLEANING,MEDIUM
+"Mold growing in the corner of the hostel bathroom",CLEANING,HIGH
+"Dust accumulation on lab equipment needs to be cleaned",CLEANING,LOW
+"Parking lot has litter scattered all over after the weekend event",CLEANING,MEDIUM
+"Air vents in the classroom are covered in dust and need cleaning",CLEANING,LOW
+"Question about the process for requesting a transcript",OTHER,LOW
+"Inquiry about club registration deadlines for this semester",OTHER,LOW
+"Asking where to submit the internship approval form",OTHER,LOW
+"Need clarification on the exam hall ticket download process",OTHER,MEDIUM
+"General question about library operating hours during exams",OTHER,LOW
+"Entire building has no power and it is a safety emergency",ELECTRICAL,HIGH
+"Small flickering in one corner light, not urgent",ELECTRICAL,LOW
+"Gas smell near the electrical panel, extremely dangerous",ELECTRICAL,HIGH
+"Slightly loose switch cover, cosmetic issue only",ELECTRICAL,LOW
+"Water flooding rapidly and spreading toward electrical outlets",PLUMBING,HIGH
+"Tiny drip from the tap, barely noticeable",PLUMBING,LOW
+"Sewage backing up into the hostel corridor, urgent health hazard",PLUMBING,HIGH
+"Minor stain on the bathroom tile, no rush",PLUMBING,LOW
+"All computers in the lab are down before tomorrow's exam",IT_EQUIPMENT,HIGH
+"Mouse occasionally lags a little, not a big deal",IT_EQUIPMENT,LOW
+"Entire server room lost internet during ongoing online exam",IT_EQUIPMENT,HIGH
+"Small scratch on laptop lid, purely cosmetic",IT_EQUIPMENT,LOW
+"Broken glass on the classroom floor, immediate safety hazard",FURNITURE,HIGH
+"Tiny scuff mark on the table surface",FURNITURE,LOW
+"Chair collapsed and injured a student, needs urgent replacement",FURNITURE,HIGH
+"Slightly faded paint on the cabinet, no rush",FURNITURE,LOW
+"Biohazard spill in the lab needs immediate cleanup",CLEANING,HIGH
+"A little dust on the shelf, whenever convenient",CLEANING,LOW
+"Sewage smell spreading through the entire floor, urgent",CLEANING,HIGH
+"Light dust on the windowsill, not urgent at all",CLEANING,LOW
+"Asking if the library will be open on the public holiday",OTHER,LOW
+"Question about eligibility for the merit scholarship",OTHER,LOW
+"General query about hostel curfew timings",OTHER,LOW
+"Asking how to update contact details in the student portal",OTHER,LOW

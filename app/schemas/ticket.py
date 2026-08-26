@@ -8,8 +8,8 @@ class TicketCreate(BaseModel):
     title: str
     description: str
     location: str
-    category: CategoryEnum = CategoryEnum.OTHER
-    priority: PriorityEnum = PriorityEnum.MEDIUM
+    category: Optional[CategoryEnum] = None
+    priority: Optional[PriorityEnum] = None
 
 
 class TicketUpdate(BaseModel):

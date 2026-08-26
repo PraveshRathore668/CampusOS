@@ -2,13 +2,14 @@ from fastapi import FastAPI, Depends
 from sqlalchemy.orm import Session
 from sqlalchemy import text
 from database import get_db
-from app.api import auth, tickets, bookings
+from app.api import auth, tickets, bookings, ai
 
 app = FastAPI(title="CampusOS API")
 
 app.include_router(auth.router)
 app.include_router(tickets.router)
 app.include_router(bookings.router)
+app.include_router(ai.router)
 
 
 @app.get("/health")
