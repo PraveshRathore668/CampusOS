@@ -66,3 +66,30 @@ def get_ticket(
         )
 
     return ticket
+
+
+from app.schemas.ticket import TicketUpdate
+from app.api.deps import require_role
+from app.models.user import RoleEnum
+
+
+@router.patch("/{ticket_id}", response_model=TicketOut)
+def update_ticket(
+    ticket_id: int,
+    ticket_update: TicketUpdate,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(require_role(RoleEnum.ADMIN, RoleEnum.FACULTY)),
+):
+    ticket = db.query(Ticket).filter(Ticket.id == ticket_id).first()
+
+    if not ticket:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Ticket not found")
+
+    update_data = ticket_update.dict(exclude_unset=True)
+    for field, value in update_data.items():
+        setattr(ticket, field, value)
+
+    db.commit()
+    db.refresh(ticket)
+
+    return ticket
