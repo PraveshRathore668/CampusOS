@@ -354,3 +354,47 @@ button { font-family: inherit; }
   .app-shell { grid-template-columns: 1fr; }
   .sidebar { display: none; }
 }
+
+/* ===== Layout width fix ===== */
+
+.main-area {
+  max-width: 1400px;
+  width: 100%;
+  padding: 2.5rem 3.5rem 4rem;
+}
+
+.ticket-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 1rem;
+}
+
+.ticket-form {
+  max-width: 640px;
+}
+
+.chat-window {
+  max-width: 100%;
+}
+
+/* ===== Full-width fix v2 ===== */
+
+html, body, #root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+.app-shell {
+  width: 100%;
+  min-height: 100vh;
+}
+
+.main-area {
+  max-width: none;
+  width: 100%;
+  padding: 2.5rem 4rem 4rem;
+}
+
+.ticket-list {
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+}
