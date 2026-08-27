@@ -73,6 +73,7 @@ export default function Booking() {
         <Link to="/tickets">Tickets</Link>
         <Link to="/bookings" className="active">Bookings</Link>
         <Link to="/assistant">AI Assistant</Link>
+        <Link to="/assistant">AI Assistant</Link>
       </nav>
 
       <form onSubmit={handleSubmit} className="ticket-form">

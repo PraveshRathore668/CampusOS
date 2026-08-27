@@ -4,6 +4,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Tickets from "./pages/Tickets";
 import Booking from "./pages/Booking";
+import Assistant from "./pages/Assistant";
 import "./App.css";
 
 function ProtectedRoute({ children }) {
@@ -30,6 +31,14 @@ export default function App() {
         element={
           <ProtectedRoute>
             <Booking />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/assistant"
+        element={
+          <ProtectedRoute>
+            <Assistant />
           </ProtectedRoute>
         }
       />
