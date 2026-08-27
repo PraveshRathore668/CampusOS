@@ -1,3 +1,4 @@
+import time
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import IntegrityError
@@ -7,13 +8,25 @@ from app.models.booking import Booking, Resource
 from app.models.user import User
 from app.schemas.booking import BookingCreate, BookingOut, ResourceOut
 from app.api.deps import get_current_user
+from app.core.cache import get_cache, set_cache, delete_cache
 
 router = APIRouter(prefix="/api/v1/bookings", tags=["bookings"])
+
+RESOURCES_CACHE_KEY = "resources:all"
 
 
 @router.get("/resources", response_model=List[ResourceOut])
 def list_resources(db: Session = Depends(get_db)):
-    return db.query(Resource).all()
+    cached = get_cache(RESOURCES_CACHE_KEY)
+    if cached is not None:
+        return cached
+
+    resources = db.query(Resource).all()
+    result = [ResourceOut.model_validate(r).model_dump(mode="json") for r in resources]
+
+    set_cache(RESOURCES_CACHE_KEY, result, expire_seconds=120)
+
+    return result
 
 
 @router.post("", response_model=BookingOut, status_code=status.HTTP_201_CREATED)
