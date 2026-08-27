@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import apiClient from "../api/client";
-import { useAuth } from "../context/AuthContext";
-import { Link } from "react-router-dom";
+import Layout from "../components/Layout";
+import { Plus, Inbox, MapPin } from "lucide-react";
 
 export default function Tickets() {
   const [tickets, setTickets] = useState([]);
@@ -9,7 +9,6 @@ export default function Tickets() {
   const [showForm, setShowForm] = useState(false);
   const [form, setForm] = useState({ title: "", description: "", location: "" });
   const [submitting, setSubmitting] = useState(false);
-  const { user, logout } = useAuth();
 
   async function loadTickets() {
     setLoading(true);
@@ -42,25 +41,14 @@ export default function Tickets() {
   }
 
   return (
-    <div className="page">
-      <header className="page-header">
-        <h1>CampusOS — Tickets</h1>
-        <div>
-          <span className="user-badge">{user?.full_name} ({user?.role})</span>
-          <button className="logout-btn" onClick={logout}>Log Out</button>
-        </div>
-      </header>
-
-      <nav className="page-nav">
-        <Link to="/tickets" className="active">Tickets</Link>
-        <Link to="/bookings">Bookings</Link>
-        <Link to="/assistant">AI Assistant</Link>
-      </nav>
-
-      <button className="primary-btn" onClick={() => setShowForm(!showForm)}>
-        {showForm ? "Cancel" : "+ New Ticket"}
-      </button>
-
+    <Layout
+      title="Tickets"
+      action={
+        <button className="primary-btn" onClick={() => setShowForm(!showForm)}>
+          <Plus size={16} /> {showForm ? "Cancel" : "New Ticket"}
+        </button>
+      }
+    >
       {showForm && (
         <form onSubmit={handleSubmit} className="ticket-form">
           <input
@@ -92,9 +80,12 @@ export default function Tickets() {
       )}
 
       {loading ? (
-        <p>Loading tickets...</p>
+        <p className="muted">Loading tickets...</p>
       ) : tickets.length === 0 ? (
-        <p>No tickets yet.</p>
+        <div className="empty-state">
+          <Inbox size={28} strokeWidth={1.5} />
+          <p>No tickets yet. Create one to get started.</p>
+        </div>
       ) : (
         <div className="ticket-list">
           {tickets.map((t) => (
@@ -109,12 +100,12 @@ export default function Tickets() {
               <div className="ticket-meta">
                 <span className="tag">{t.category}</span>
                 <span className={`tag priority-${t.priority.toLowerCase()}`}>{t.priority}</span>
-                <span className="location">📍 {t.location}</span>
+                <span className="location"><MapPin size={13} /> {t.location}</span>
               </div>
             </div>
           ))}
         </div>
       )}
-    </div>
+    </Layout>
   );
 }

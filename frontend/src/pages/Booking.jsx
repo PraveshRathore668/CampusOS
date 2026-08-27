@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import apiClient from "../api/client";
-import { useAuth } from "../context/AuthContext";
-import { Link } from "react-router-dom";
+import Layout from "../components/Layout";
+import { CalendarClock } from "lucide-react";
 
 export default function Booking() {
   const [resources, setResources] = useState([]);
@@ -10,7 +10,6 @@ export default function Booking() {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [submitting, setSubmitting] = useState(false);
-  const { user, logout } = useAuth();
 
   async function loadData() {
     const [resRes, bookRes] = await Promise.all([
@@ -60,22 +59,7 @@ export default function Booking() {
   }
 
   return (
-    <div className="page">
-      <header className="page-header">
-        <h1>CampusOS — Bookings</h1>
-        <div>
-          <span className="user-badge">{user?.full_name} ({user?.role})</span>
-          <button className="logout-btn" onClick={logout}>Log Out</button>
-        </div>
-      </header>
-
-      <nav className="page-nav">
-        <Link to="/tickets">Tickets</Link>
-        <Link to="/bookings" className="active">Bookings</Link>
-        <Link to="/assistant">AI Assistant</Link>
-        <Link to="/assistant">AI Assistant</Link>
-      </nav>
-
+    <Layout title="Bookings">
       <form onSubmit={handleSubmit} className="ticket-form">
         <select name="resource_id" value={form.resource_id} onChange={handleChange} required>
           <option value="">Select a resource...</option>
@@ -112,9 +96,12 @@ export default function Booking() {
         </button>
       </form>
 
-      <h2>Your Bookings</h2>
+      <h2 className="section-title">Your Bookings</h2>
       {bookings.length === 0 ? (
-        <p>No bookings yet.</p>
+        <div className="empty-state">
+          <CalendarClock size={28} strokeWidth={1.5} />
+          <p>No bookings yet.</p>
+        </div>
       ) : (
         <div className="ticket-list">
           {bookings.map((b) => (
@@ -128,6 +115,6 @@ export default function Booking() {
           ))}
         </div>
       )}
-    </div>
+    </Layout>
   );
 }

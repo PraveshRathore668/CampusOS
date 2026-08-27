@@ -1,13 +1,12 @@
 import { useState, useRef, useEffect } from "react";
 import apiClient from "../api/client";
-import { useAuth } from "../context/AuthContext";
-import { Link } from "react-router-dom";
+import Layout from "../components/Layout";
+import { FileText, Send } from "lucide-react";
 
 export default function Assistant() {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
-  const { user, logout } = useAuth();
   const bottomRef = useRef(null);
 
   useEffect(() => {
@@ -40,21 +39,7 @@ export default function Assistant() {
   }
 
   return (
-    <div className="page">
-      <header className="page-header">
-        <h1>CampusOS — AI Assistant</h1>
-        <div>
-          <span className="user-badge">{user?.full_name} ({user?.role})</span>
-          <button className="logout-btn" onClick={logout}>Log Out</button>
-        </div>
-      </header>
-
-      <nav className="page-nav">
-        <Link to="/tickets">Tickets</Link>
-        <Link to="/bookings">Bookings</Link>
-        <Link to="/assistant" className="active">AI Assistant</Link>
-      </nav>
-
+    <Layout title="AI Assistant">
       <div className="chat-window">
         {messages.length === 0 && (
           <p className="chat-empty">
@@ -71,7 +56,7 @@ export default function Assistant() {
               <div className="chat-sources">
                 {m.sources.map((s, j) => (
                   <div key={j} className="source-chip">
-                    📄 {s.document_filename} (part {s.chunk_index + 1})
+                    <FileText size={12} /> {s.document_filename} (part {s.chunk_index + 1})
                   </div>
                 ))}
               </div>
@@ -97,9 +82,9 @@ export default function Assistant() {
           disabled={loading}
         />
         <button type="submit" disabled={loading || !input.trim()}>
-          Send
+          <Send size={16} />
         </button>
       </form>
-    </div>
+    </Layout>
   );
 }
