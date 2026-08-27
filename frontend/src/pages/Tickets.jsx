@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import apiClient from "../api/client";
 import { useAuth } from "../context/AuthContext";
+import { Link } from "react-router-dom";
 
 export default function Tickets() {
   const [tickets, setTickets] = useState([]);
@@ -49,6 +50,12 @@ export default function Tickets() {
           <button className="logout-btn" onClick={logout}>Log Out</button>
         </div>
       </header>
+
+      <nav className="page-nav">
+        <Link to="/tickets" className="active">Tickets</Link>
+        <Link to="/bookings">Bookings</Link>
+        <Link to="/assistant">AI Assistant</Link>
+      </nav>
 
       <button className="primary-btn" onClick={() => setShowForm(!showForm)}>
         {showForm ? "Cancel" : "+ New Ticket"}
