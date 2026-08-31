@@ -1,18 +1,20 @@
 import pytest
+import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from fastapi.testclient import TestClient
-import os
 
-os.environ["DATABASE_URL"] = "postgresql://pravesh@localhost:5432/campusos_test_db"
+TEST_DATABASE_URL = os.environ.get(
+    "DATABASE_URL",
+    "postgresql://pravesh@localhost:5432/campusos_test_db",
+)
+os.environ["DATABASE_URL"] = TEST_DATABASE_URL
 
 from database import Base, get_db
 from main import app
 from app.models.user import User
 from app.models.ticket import Ticket
 from app.models.booking import Resource, Booking
-
-TEST_DATABASE_URL = "postgresql://pravesh@localhost:5432/campusos_test_db"
 
 engine = create_engine(TEST_DATABASE_URL)
 TestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
