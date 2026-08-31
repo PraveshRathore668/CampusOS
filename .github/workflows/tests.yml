@@ -50,6 +50,7 @@ jobs:
       - name: Run tests
         env:
           DATABASE_URL: postgresql://pravesh:postgres@localhost:5432/campusos_test_db
+          REDIS_URL: redis://localhost:6379/0
           JWT_SECRET_KEY: test_secret_key_for_ci_only
           JWT_ALGORITHM: HS256
           ACCESS_TOKEN_EXPIRE_MINUTES: "30"
